@@ -1,0 +1,4 @@
+
+*.vsidx
+.vs/SimpliChess/v16/.suo
+*.lock

@@ -56,14 +56,8 @@ namespace SimpliChess
             }
 
             Console.Write("  ");
-            Console.Write("---");
-            Console.Write("---");
-            Console.Write("---");
-            Console.Write("---");
-            Console.Write("---");
-            Console.Write("---");
-            Console.Write("---");
-            Console.Write("---\n");
+            Console.Write("------------------------");
+            Console.WriteLine();
             Console.Write("  ");
             string lowerLetters = "abcdefgh";
             foreach(char c in lowerLetters)

@@ -24,9 +24,9 @@ namespace SimpliChess
                 int score = alpha_beta_min(newBoard, alpha, beta, depthleft - 1, -turn);
 
                 if (score >= beta)
-                    return beta;   // fail hard beta-cutoff
+                    return beta;
                 if (score > alpha)
-                    alpha = score; // alpha acts like max in MiniMax
+                    alpha = score;
             }
 
             return alpha;
@@ -43,9 +43,9 @@ namespace SimpliChess
                 newBoard.move_piece(mov.from, mov.to);
                 int score = alpha_beta_max(newBoard, alpha, beta, depthleft - 1, -turn);
                 if (score <= alpha)
-                    return alpha; // fail hard alpha-cutoff
+                    return alpha;
                 if (score < beta)
-                    beta = score; // beta acts like min in MiniMax
+                    beta = score;
             }
 
             return beta;
@@ -143,7 +143,6 @@ namespace SimpliChess
 
         public static int get_score_for_move(Board board, Move mov, ChessColor color)
         {
-            //Board copyBoard = utils.clone_board(board);
             Board copyBoard = board;
             copyBoard.move_piece(mov.from, mov.to);
 

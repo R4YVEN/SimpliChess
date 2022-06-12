@@ -33,6 +33,7 @@ namespace SimpliChess
             copyBoard.whiteTurn = board.whiteTurn;
             return copyBoard;
         }
+
         public static Board fen_to_board(string fen)
         {
             string[] fenParts = fen.Split(' ');

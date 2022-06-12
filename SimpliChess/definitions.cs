@@ -79,7 +79,6 @@ namespace SimpliChess
         public class Board
         {
             public List<Piece> pieces;
-            //public List<Square> squares;
             public bool whiteTurn;
 
             public void move_piece(Location _from, Location _to)

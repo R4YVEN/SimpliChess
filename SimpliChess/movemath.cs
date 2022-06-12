@@ -47,6 +47,8 @@ namespace SimpliChess
             return allMoves;
         }
 
+        //thanks github
+        //all code below is not mine (only edited slightly)
         public static IEnumerable<Location> get_possible_moves_for_piece(List<Piece> opponent, List<Piece> self, Piece piece)
         {
             if (piece.type == PieceType.pawn)

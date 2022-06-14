@@ -29,7 +29,6 @@ namespace SimpliChess
                 copyBoard.pieces.Add(copyPiece);
             }
 
-            
             copyBoard.whiteTurn = board.whiteTurn;
             return copyBoard;
         }

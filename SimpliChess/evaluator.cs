@@ -9,12 +9,10 @@ namespace SimpliChess
 {
     public static class evaluator
     {
+        public static ChessColor teamToEval;
         public static int alpha_beta_max(Board board, int alpha, int beta, int depthleft, int turn)
         {
-            if (depthleft == 0) {
-                int score = get_score_for_board(board, (ChessColor)turn);
-                return score;
-            }
+            if (depthleft == 0) return get_score_for_board(board, (ChessColor)teamToEval);
 
             var movs = movemath.get_all_evaluated_moves(board, (ChessColor)turn);
             foreach(Move mov in movs)
@@ -34,7 +32,7 @@ namespace SimpliChess
 
         public static int alpha_beta_min(Board board, int alpha, int beta, int depthleft, int turn)
         {
-            if (depthleft == 0) return get_score_for_board(board, (ChessColor)turn);
+            if (depthleft == 0) return get_score_for_board(board, (ChessColor)teamToEval);
 
             var movs = movemath.get_all_evaluated_moves(board, (ChessColor)turn);
             foreach (Move mov in movs)
@@ -42,6 +40,7 @@ namespace SimpliChess
                 Board newBoard = utils.clone_board(board);
                 newBoard.move_piece(mov.from, mov.to);
                 int score = alpha_beta_max(newBoard, alpha, beta, depthleft - 1, -turn);
+
                 if (score <= alpha)
                     return alpha;
                 if (score < beta)
@@ -57,22 +56,24 @@ namespace SimpliChess
             int bestScore = int.MinValue;
 
             var movs = movemath.get_all_evaluated_moves(board, (ChessColor)team);
+
+            teamToEval = (ChessColor)team;
+
             int movsCount = movs.Count();
             int currentMov = 0;
-            Parallel.ForEach(movs, mov =>
+            Parallel.ForEach(movs, new ParallelOptions { MaxDegreeOfParallelism = 50}, mov =>
             {
                 Board newBoard = utils.clone_board(board);
                 newBoard.move_piece(mov.from, mov.to);
 
-                int score = -alpha_beta_max(newBoard, -100000000, 100000000, depth, -team);
-                if (score > bestScore)
-                {
-                    /*Console.WriteLine("Move (" + currentMov + "/" + movsCount + ")" + ": " +
+                int score = alpha_beta_min(newBoard, -100000000, 100000000, depth, -team);
+                Console.WriteLine("Move (" + currentMov + "/" + movsCount + ")" + ": " +
                         (mov.piece.color) + " " + mov.piece.notation +
                         " | from " + (utils.int_to_column(mov.from.x) + "" + mov.from.y) +
                         " to " + (utils.int_to_column(mov.to.x) + "" + mov.to.y) +
-                        " | score: " + score);*/
-
+                        " | score: " + score);
+                if (score > bestScore)
+                {
                     bestScore = score;
                     bestMove = mov;
 
@@ -119,7 +120,7 @@ namespace SimpliChess
             int score = 0;
             if (color == ChessColor.WHITE)
             {
-                foreach (Piece piece in board.pieces.Where(piece => piece != null))
+                foreach (Piece piece in board.pieces)
                 {
                     if (piece.color == ChessColor.WHITE)
                         score += (int)piece.worth;
@@ -129,7 +130,7 @@ namespace SimpliChess
             }
             else
             {
-                foreach (Piece piece in board.pieces.Where(piece => piece != null))
+                foreach (Piece piece in board.pieces)
                 {
                     if (piece.color == ChessColor.WHITE)
                         score -= (int)piece.worth;

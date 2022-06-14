@@ -36,7 +36,11 @@ namespace SimpliChess
                 for(int j = 0; j < allMoves.Count; j++)
                 {
                     Move mov = allMoves[j];
-                    int scoreForMov = evaluator.get_score_for_move(board, mov, color);
+                    Board newBoard = utils.clone_board(board);
+                    newBoard.move_piece(mov.from, mov.to);
+                    int scoreForMov = evaluator.get_score_for_board(newBoard, color);
+                    //board.move_piece(mov.to, mov.from);
+                    //int scoreForMov = evaluator.get_score_for_move(board, mov, color);
                     mov.scoreWhite = color == ChessColor.WHITE ? scoreForMov : -scoreForMov;
                     mov.scoreBlack = color == ChessColor.WHITE ? -scoreForMov : scoreForMov;
 

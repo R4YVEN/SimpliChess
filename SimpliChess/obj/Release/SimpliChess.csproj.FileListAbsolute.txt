@@ -1,0 +1,8 @@
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\bin\Release\SimpliChess.exe.config
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\bin\Release\SimpliChess.exe
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\bin\Release\SimpliChess.pdb
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\obj\Release\SimpliChess.csproj.AssemblyReference.cache
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\obj\Release\SimpliChess.csproj.SuggestedBindingRedirects.cache
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\obj\Release\SimpliChess.csproj.CoreCompileInputs.cache
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\obj\Release\SimpliChess.exe
+C:\Users\emlin\Documents\GitHub\SimpliChess\SimpliChess\obj\Release\SimpliChess.pdb

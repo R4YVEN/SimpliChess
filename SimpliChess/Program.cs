@@ -25,7 +25,7 @@ namespace SimpliChess
             }
             else
             {
-                string fen = "rnbqkbnr/pppp1ppp/4p3/8/8/3P4/PPP1PPPP/RNBQKBNR w KQkq - 0 1";
+                string fen = "rnb1kbnr/pppppppp/8/8/8/6qP/PPPPPPP1/RNBQKBNR b KQkq - 0 1";
 
                 Board board = fen_to_board(fen);
                 print_board(board);
